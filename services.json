@@ -1,50 +1,44 @@
 [
   {
-    "service_id": "01",
     "title": "Nutrition Strategies",
     "img": "https://coactivehealth.uk/wp-content/themes/yootheme/cache/clean-up-modified-elimination-diet-c4ebb9e1.jpeg",
     "price": "20.00",
-    "date":"11-09-2022",
+    "ratings":"4.5",
     "description": "The relationship between us mind and body actually teachings of great explorer truth. For a food to be labeled trans fat free. it must contain no more than 0.5 grams trans fat per serving. margarine's that claim to be trans fat free should contain water or liquid vegetable oil as the first ingredient. These margarine's may still contain some hydrogenated oil, but the amount per serving is negligible. However, portion control is key - once you exceed the serving size, the product is no longer free of trans fat."
   },
   {
-    "service_id": "02",
     "title": "Workout Routines",
     "img": "https://onnitacademy.imgix.net/2016/02/Pull_Up_Alt1.jpg",
     "price": "40.00",
-    "date":"11-08-2022",
+    "ratings":"4.3",
     "description": "Whether you’re looking to transform your body or just kick your training up a notch, it’s important to add training volume (in the form of reps, sets, and weight) to stimulate new muscle growth as you progress. In general, most beginners have been lifting for less than a year, intermediates for at least 1 year, and advanced trainees for at least 2 years. Keep in mind that you should not attempt advanced workouts unless you have appropriate strength training experience."
   },
   {
-    "service_id": "03",
     "title": "Fitness & Performance",
     "img": "https://i0.wp.com/post.healthline.com/wp-content/uploads/2015/11/man-male-running-sex-workouts-1296x728-header.jpg?w=1155&h=1528",
     "price": "30.00",
-    "date":"14-09-2022",
+    "ratings":"4.6",
     "description": "Finding a workout is as easy as scrolling down, picking out the session that matches your goals, and getting your butt to the gym! You can use varying levels of physical activity to enhance your health, which is the overall state of your body and mind; your fitness, which is your ability to carry out routine physical tasks without undue fatigue; and your performance, which is how well you can complete a physical task."
   },
   {
-    "service_id": "04",
     "title": "Improving Health",
     "img": "https://www.firstthingsfirst.org/wp-content/uploads/2017/12/Childrens-Healthcare-1.jpg",
     "price": "60.00",
-    "date":"18-09-2022",
+    "ratings":"4.7",
     "description": "Everyone knows that eating a balanced diet, exercising and getting plenty of rest are key to maintaining good health. However, that can seem to be an impossible task while in college. Frequently, the appeal of sweets, fast food, caffeine and alcohol outweigh healthy options when you’re in the company of friends or under stress from coursework. Here are some tips for staying healthy in spite of your college lifestyle."
   },
   {
-    "service_id": "05",
     "title": "Physical Activity",
     "img": "https://www.leisureopportunities.co.uk/images/2020/HIGH346753_951708_948074.jpg",
     "price": "70.00",
-    "date":"15-09-2022",
+    "ratings":"4.8",
     "description": "Physical activity refers to all movement including during leisure time, for transport to get to and from places, or as part of a person’s work. Both moderate- and vigorous-intensity physical activity improve health. Popular ways to be active include walking, cycling, wheeling, sports, active recreation and play, and can be done at any level of skill and for enjoyment by everybody. Regular physical activity is proven to help prevent and manage noncommunicable diseases such as heart disease, stroke, diabetes and several cancers. It also helps prevent hypertension, maintain healthy body weight and can improve mental health, quality of life and well-being. "
   },
   {
-    "service_id": "06",
     "title": "Healthy Daily Life",
     "img": "https://www.japantimes.co.jp/wp-content/uploads/2019/04/p7-flam-a-20190414.jpg",
     "price": "50.00",
-    "date":"10-09-2022",
+    "ratings":"4.4",
     "description": "Your daily routine consists of all of your habits. These actions structure your day and make the difference between operating at peak efficiency and struggling to make it through a poorly-planned day.You can have energizing, time-saving routines or adopt draining, inefficient routines. The choice is up to you. Don’t feel bad knowing that some unhealthy habits have crept into your day. The important thing is to recognize them so that you can make a change."
   }
 ]

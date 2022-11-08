@@ -132,6 +132,28 @@ app.get('/reviews', async (req, res) => {
                 serviceId: req.query.serviceId
             }
 
+            const cursor = Reviews.find(query).sort({ date: -1 });
+            const review = await cursor.toArray();
+            res.send({
+                success: true,
+                data: review
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
+app.get('/user-reviews', async (req, res) => {
+    try {
+        if (req.query.email) {
+            const query = {
+                email: req.query.email
+            }
             const cursor = Reviews.find(query);
             const review = await cursor.toArray();
             res.send({
@@ -147,6 +169,34 @@ app.get('/reviews', async (req, res) => {
         })
     }
 })
+
+
+
+app.post('/allServices', async (req, res) => {
+    try {
+        const doc = req.body;
+        const result = await Services.insertOne(doc);
+        if (result.insertedId) {
+            res.send({
+                success: true,
+                message: `Successfully Created the Service`
+            })
+        }
+        else {
+            res.send({
+                success: false,
+                message: `Couldn't create the service. Please try again`
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
 
 app.get('/', (req, res) => {
     res.send('health pursue server is running');
