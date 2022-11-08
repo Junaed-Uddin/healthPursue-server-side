@@ -26,6 +26,7 @@ dbConnect();
 
 // db and collections 
 const Services = client.db("doctorDB").collection("services");
+const Reviews = client.db("doctorDB").collection("reviews");
 
 // endpoints 
 app.get('/services', async (req, res) => {
@@ -99,6 +100,53 @@ app.get('/allServices/:id', async (req, res) => {
     }
 });
 
+app.post('/reviews', async (req, res) => {
+    try {
+        const doc = req.body;
+        const result = await Reviews.insertOne(doc);
+        if (result.insertedId) {
+            res.send({
+                success: true,
+                message: `Successfully Created the Review`
+            })
+        }
+        else {
+            res.send({
+                success: false,
+                message: `Couldn't create the review. please try again`
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
+app.get('/reviews', async (req, res) => {
+    try {
+        if (req.query.serviceId) {
+            const query = {
+                serviceId: req.query.serviceId
+            }
+
+            const cursor = Reviews.find(query);
+            const review = await cursor.toArray();
+            res.send({
+                success: true,
+                data: review
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+})
 
 app.get('/', (req, res) => {
     res.send('health pursue server is running');
