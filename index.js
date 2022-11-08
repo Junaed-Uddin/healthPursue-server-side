@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -9,7 +10,6 @@ app.use(cors());
 app.use(express.json());
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASSWORD}@cluster0.t0pnxex.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -62,6 +62,43 @@ app.get('/allServices', async (req, res) => {
         })
     }
 });
+
+app.get('/services/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const query = { _id: ObjectId(id) };
+        const service = await Services.findOne(query);
+        res.send({
+            success: true,
+            data: service
+        })
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
+app.get('/allServices/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const query = { _id: ObjectId(id) };
+        const service = await Services.findOne(query);
+        res.send({
+            success: true,
+            data: service
+        })
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
 
 app.get('/', (req, res) => {
     res.send('health pursue server is running');
