@@ -131,6 +131,7 @@ app.get('/reviews', async (req, res) => {
 });
 
 app.get('/user-reviews', async (req, res) => {
+
     try {
         if (req.query.email) {
             const query = {
@@ -161,6 +162,40 @@ app.get('/user-reviews/:id', async (req, res) => {
             success: true,
             data: review
         })
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
+app.patch('/user-reviews/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const filter = { _id: ObjectId(id) };
+        const updateReview = {
+            $set: {
+                date: req.body.date,
+                ratings: req.body.ratings,
+                review: req.body.review,
+            }
+        }
+
+        const result = await Reviews.updateOne(filter, updateReview);
+        if (result.matchedCount) {
+            res.send({
+                success: true,
+                message: `Update Review Successfully`
+            })
+        }
+        else {
+            res.send({
+                success: false,
+                message: `Couldn't Update. Please Try Again`
+            })
+        }
 
     } catch (error) {
         res.send({
