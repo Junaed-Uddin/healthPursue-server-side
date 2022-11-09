@@ -82,24 +82,6 @@ app.get('/services/:id', async (req, res) => {
     }
 });
 
-app.get('/allServices/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const query = { _id: ObjectId(id) };
-        const service = await Services.findOne(query);
-        res.send({
-            success: true,
-            data: service
-        })
-
-    } catch (error) {
-        res.send({
-            success: false,
-            message: error.message
-        })
-    }
-});
-
 app.post('/reviews', async (req, res) => {
     try {
         const doc = req.body;
@@ -154,11 +136,56 @@ app.get('/user-reviews', async (req, res) => {
             const query = {
                 email: req.query.email
             }
-            const cursor = Reviews.find(query);
+            const cursor = Reviews.find(query).sort({ date: -1 });
             const review = await cursor.toArray();
             res.send({
                 success: true,
                 data: review
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
+app.get('/user-reviews/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const query = { _id: ObjectId(id) };
+        const review = await Reviews.findOne(query);
+        res.send({
+            success: true,
+            data: review
+        })
+
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message
+        })
+    }
+});
+
+app.delete('/user-reviews/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const query = { _id: ObjectId(id) };
+        const result = await Reviews.deleteOne(query);
+        if (result.deletedCount) {
+            res.send({
+                success: true,
+                message: `Successfully Deleted`
+            })
+        }
+        else {
+            res.send({
+                success: false,
+                message: `Couldn't Delete the Reviews, Please try again`
             })
         }
 
