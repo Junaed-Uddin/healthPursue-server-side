@@ -130,9 +130,35 @@ app.get('/reviews', async (req, res) => {
     }
 });
 
-app.get('/user-reviews', async (req, res) => {
+const verifyJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).send({ message: 'unauthorized access' });
+    }
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({ message: 'unauthorized access' });
+        }
+        req.decoded = decoded;
+        next();
+    })
+}
 
+app.post('/jwt', async (req, res) => {
+    const user = req.body;
+    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+    res.send({ token });
+})
+
+app.get('/user-reviews', verifyJWT, async (req, res) => {
     try {
+        const decoded = req.decoded;
+
+        if (decoded.email !== req.query.email) {
+            return res.status(403).send({ message: 'Unauthorized Access' });
+        }
+
         if (req.query.email) {
             const query = {
                 email: req.query.email
