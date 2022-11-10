@@ -147,7 +147,7 @@ const verifyJWT = (req, res, next) => {
 
 app.post('/jwt', async (req, res) => {
     const user = req.body;
-    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5h' })
     res.send({ token });
 })
 
